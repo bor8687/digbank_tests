@@ -1,0 +1,7 @@
+---
+modules:
+  cloud:
+    token: '90823e79f926e0c905b84c6d:ef50a04d0d7b6da7d89ed7f64bafa4f436417cc3a2e8d539932e5e2f963f6728e4265a20'
+    account: SE Demo
+    workspace: .Demo Workspace
+    project: DigBank_Tests

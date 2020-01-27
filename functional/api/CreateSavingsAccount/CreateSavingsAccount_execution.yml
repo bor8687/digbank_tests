@@ -1,15 +1,15 @@
 ---
 settings:
     env:
-      BASE_URL: http://34.94.0.144:8081
+      BASE_URL: http://34.74.85.46:8082
 reporting:
   - module: junit-xml
     filename: result.xml
     data-source: pass-fail
 modules:
   cloud:
-    report-name: Create Savings Account Test Report
-    test: Create Savings Account Test
+    report-name: CreateSavingsAccount Test Report
+    test: CreateSavingsAccount Test
 execution:
   - scenario: Create Savings Account TC 1 - Individual Money Market Not Created - Minimum Deposit Not Met
     concurrency: 1

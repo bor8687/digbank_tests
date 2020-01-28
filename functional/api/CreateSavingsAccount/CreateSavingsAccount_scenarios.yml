@@ -23,7 +23,7 @@ scenarios:
         headers:
           Authorization: Bearer ${authToken}
           Content-Type: application/json
-        body: '{ "accountName": "AKP Savings", "accountTypeCode": "MMA", "openingDeposit": 571, "ownerTypeCode": "IND" }'
+        body: '{ "accountName": "AKP Savings", "accountTypeCode": "MMA", "openingDeposit": 1010, "ownerTypeCode": "IND" }'
         assert:
          - contains:
            - '406'
@@ -53,7 +53,7 @@ scenarios:
         headers:
           Authorization: Bearer ${authToken}
           Content-Type: application/json
-        body: '{ "accountName": "AKP Savings", "accountTypeCode": "MMA", "openingDeposit": -63, "ownerTypeCode": "IND" }'
+        body: '{ "accountName": "AKP Savings", "accountTypeCode": "MMA", "openingDeposit": -60, "ownerTypeCode": "IND" }'
         assert:
          - contains:
            - '400'
@@ -113,7 +113,7 @@ scenarios:
         headers:
           Authorization: Bearer ${authToken}
           Content-Type: application/json
-        body: '{ "accountName": "AKP Savings", "accountTypeCode": "MMA", "openingDeposit": 3425, "ownerTypeCode": "IND" }'
+        body: '{ "accountName": "AKP Savings", "accountTypeCode": "MMA", "openingDeposit": 3200, "ownerTypeCode": "IND" }'
         assert:
          - contains:
            - '200'
@@ -173,7 +173,7 @@ scenarios:
         headers:
           Authorization: Bearer ${authToken}
           Content-Type: application/json
-        body: '{ "accountName": "AKP Savings", "accountTypeCode": "SAV", "openingDeposit": 737, "ownerTypeCode": "IND" }'
+        body: '{ "accountName": "AKP Savings", "accountTypeCode": "SAV", "openingDeposit": 777, "ownerTypeCode": "IND" }'
         assert:
          - contains:
            - '200'
@@ -203,7 +203,7 @@ scenarios:
         headers:
           Authorization: Bearer ${authToken}
           Content-Type: application/json
-        body: '{ "accountName": "AKP Savings", "accountTypeCode": "SAV", "openingDeposit": 0, "ownerTypeCode": "IND" }'
+        body: '{ "accountName": "AKP Savings", "accountTypeCode": "SAV", "openingDeposit": 6, "ownerTypeCode": "IND" }'
         assert:
          - contains:
            - '406'
@@ -293,7 +293,7 @@ scenarios:
         headers:
           Authorization: Bearer ${authToken}
           Content-Type: application/json
-        body: '{ "accountName": "AKP Savings", "accountTypeCode": "MMA", "openingDeposit": 188, "ownerTypeCode": "JNT" }'
+        body: '{ "accountName": "AKP Savings", "accountTypeCode": "MMA", "openingDeposit": 684, "ownerTypeCode": "JNT" }'
         assert:
          - contains:
            - '406'
@@ -323,7 +323,7 @@ scenarios:
         headers:
           Authorization: Bearer ${authToken}
           Content-Type: application/json
-        body: '{ "accountName": "AKP Savings", "accountTypeCode": "MMA", "openingDeposit": -67, "ownerTypeCode": "JNT" }'
+        body: '{ "accountName": "AKP Savings", "accountTypeCode": "MMA", "openingDeposit": -51, "ownerTypeCode": "JNT" }'
         assert:
          - contains:
            - '400'
@@ -383,7 +383,7 @@ scenarios:
         headers:
           Authorization: Bearer ${authToken}
           Content-Type: application/json
-        body: '{ "accountName": "AKP Savings", "accountTypeCode": "MMA", "openingDeposit": 3283, "ownerTypeCode": "JNT" }'
+        body: '{ "accountName": "AKP Savings", "accountTypeCode": "MMA", "openingDeposit": 2669, "ownerTypeCode": "JNT" }'
         assert:
          - contains:
            - '200'
@@ -443,7 +443,7 @@ scenarios:
         headers:
           Authorization: Bearer ${authToken}
           Content-Type: application/json
-        body: '{ "accountName": "AKP Savings", "accountTypeCode": "SAV", "openingDeposit": 627, "ownerTypeCode": "JNT" }'
+        body: '{ "accountName": "AKP Savings", "accountTypeCode": "SAV", "openingDeposit": 98, "ownerTypeCode": "JNT" }'
         assert:
          - contains:
            - '200'
@@ -473,7 +473,7 @@ scenarios:
         headers:
           Authorization: Bearer ${authToken}
           Content-Type: application/json
-        body: '{ "accountName": "AKP Savings", "accountTypeCode": "SAV", "openingDeposit": 11, "ownerTypeCode": "JNT" }'
+        body: '{ "accountName": "AKP Savings", "accountTypeCode": "SAV", "openingDeposit": 12, "ownerTypeCode": "JNT" }'
         assert:
          - contains:
            - '406'
@@ -503,7 +503,7 @@ scenarios:
         headers:
           Authorization: Bearer ${authToken}
           Content-Type: application/json
-        body: '{ "accountName": "AKP Savings", "accountTypeCode": "SAV", "openingDeposit": -67, "ownerTypeCode": "JNT" }'
+        body: '{ "accountName": "AKP Savings", "accountTypeCode": "SAV", "openingDeposit": -9, "ownerTypeCode": "JNT" }'
         assert:
          - contains:
            - '400'
@@ -623,7 +623,7 @@ scenarios:
         headers:
           Authorization: Bearer ${authToken}
           Content-Type: application/json
-        body: '{ "accountName": "AKP Savings )*$%!$$", "accountTypeCode": "", "openingDeposit": , "ownerTypeCode": "" }'
+        body: '{ "accountName": "AKP Savings )%)!$", "accountTypeCode": "", "openingDeposit": , "ownerTypeCode": "" }'
         assert:
          - contains:
            - '400'

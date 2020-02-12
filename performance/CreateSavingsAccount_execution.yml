@@ -14,25 +14,25 @@ execution:
   - scenario: Create Savings Account TC 1 - Individual Money Market Not Created - Minimum Deposit Not Met
     concurrency: 2
     ramp-up: 1s
-    hold-for: 0m
-    iterations: 1
+    hold-for: 2m
+    iterations: -1
   - scenario: Create Savings Account TC 2 - Individual Money Market Not Created - Initial Deposit Less Than Zero
     concurrency: 2
     ramp-up: 1s
-    hold-for: 0m
-    iterations: 1
+    hold-for: 2m
+    iterations: -1
   - scenario: Create Savings Account TC 3 - Individual Money Market Created
     concurrency: 2
     ramp-up: 1s
-    hold-for: 0m
-    iterations: 1
+    hold-for: 2m
+    iterations: -1
   - scenario: Create Savings Account TC 4 - Individual Savings Created
     concurrency: 2
     ramp-up: 1s
-    hold-for: 0m
-    iterations: 1
+    hold-for: 2m
+    iterations: -1
   - scenario: Create Savings Account TC 5 - Data Validation Error
     concurrency: 2
     ramp-up: 1s
-    hold-for: 0m
-    iterations: 1
+    hold-for: 2m
+    iterations: -1

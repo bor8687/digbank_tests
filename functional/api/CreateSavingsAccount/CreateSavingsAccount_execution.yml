@@ -26,12 +26,92 @@ execution:
     ramp-up: 1s
     hold-for: 2m
     iterations: -1
-  - scenario: Create Savings Account TC 4 - Individual Savings Created
+  - scenario: Create Savings Account TC 4 - Individual Money Market Created
     concurrency: 2
     ramp-up: 1s
     hold-for: 2m
     iterations: -1
-  - scenario: Create Savings Account TC 5 - Data Validation Error
+  - scenario: Create Savings Account TC 5 - Individual Savings Created
+    concurrency: 2
+    ramp-up: 1s
+    hold-for: 2m
+    iterations: -1
+  - scenario: Create Savings Account TC 6 - Individual Savings Created
+    concurrency: 2
+    ramp-up: 1s
+    hold-for: 2m
+    iterations: -1
+  - scenario: Create Savings Account TC 7 - Individual Savings Not Created - Minimum Deposit Not Met
+    concurrency: 2
+    ramp-up: 1s
+    hold-for: 2m
+    iterations: -1
+  - scenario: Create Savings Account TC 8 - Individual Savings Not Created - Initial Deposit Less Than Zero
+    concurrency: 2
+    ramp-up: 1s
+    hold-for: 2m
+    iterations: -1
+  - scenario: Create Savings Account TC 9 - Data Validation Error
+    concurrency: 2
+    ramp-up: 1s
+    hold-for: 2m
+    iterations: -1
+  - scenario: Create Savings Account TC 10 - Joint Money Market Not Created - Minimum Deposit Not Met
+    concurrency: 2
+    ramp-up: 1s
+    hold-for: 2m
+    iterations: -1
+  - scenario: Create Savings Account TC 11 - Joint Money Market Not Created - Initial Deposit Less Than Zero
+    concurrency: 2
+    ramp-up: 1s
+    hold-for: 2m
+    iterations: -1
+  - scenario: Create Savings Account TC 12 - Joint Money Market Created
+    concurrency: 2
+    ramp-up: 1s
+    hold-for: 2m
+    iterations: -1
+  - scenario: Create Savings Account TC 13 - Joint Money Market Created
+    concurrency: 2
+    ramp-up: 1s
+    hold-for: 2m
+    iterations: -1
+  - scenario: Create Savings Account TC 14 - Joint Savings Created
+    concurrency: 2
+    ramp-up: 1s
+    hold-for: 2m
+    iterations: -1
+  - scenario: Create Savings Account TC 15 - Joint Savings Created
+    concurrency: 2
+    ramp-up: 1s
+    hold-for: 2m
+    iterations: -1
+  - scenario: Create Savings Account TC 16 - Joint Savings Not Created - Minimum Deposit Not Met
+    concurrency: 2
+    ramp-up: 1s
+    hold-for: 2m
+    iterations: -1
+  - scenario: Create Savings Account TC 17 - Joint Savings Not Created - Initial Deposit Less Than Zero
+    concurrency: 2
+    ramp-up: 1s
+    hold-for: 2m
+    iterations: -1
+  - scenario: Create Savings Account TC 18 - Data Validation Error
+    concurrency: 2
+    ramp-up: 1s
+    hold-for: 2m
+    iterations: -1
+  - scenario: Create Savings Account TC 19 - Data Validation Error
+    concurrency: 2
+    ramp-up: 1s
+    hold-for: 2m
+    iterations: -1
+  - scenario: Create Savings Account TC 20 - Data Validation Error
+    concurrency: 2
+    ramp-up: 1s
+    hold-for: 2m
+    iterations: -1
+  - scenario: Create Savings Account TC 21 - Data Validation Error
     concurrency: 2
     ramp-up: 1s
     hold-for: 2m

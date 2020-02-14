@@ -23,7 +23,7 @@ scenarios:
         headers:
           Authorization: Bearer ${authToken}
           Content-Type: application/json
-        body: '{ "accountName": "AKP Savings", "accountTypeCode": "MMA", "openingDeposit": 112, "ownerTypeCode": "IND" }'
+        body: '{ "accountName": "AKP Savings", "accountTypeCode": "MMA", "openingDeposit": 1558, "ownerTypeCode": "IND" }'
         assert:
          - contains:
            - '406'
@@ -53,7 +53,7 @@ scenarios:
         headers:
           Authorization: Bearer ${authToken}
           Content-Type: application/json
-        body: '{ "accountName": "AKP Savings", "accountTypeCode": "MMA", "openingDeposit": -52, "ownerTypeCode": "IND" }'
+        body: '{ "accountName": "AKP Savings", "accountTypeCode": "MMA", "openingDeposit": -31, "ownerTypeCode": "IND" }'
         assert:
          - contains:
            - '400'
@@ -91,7 +91,37 @@ scenarios:
            regexp: true
            assume-success: true
 
-  Create Savings Account TC 4 - Individual Savings Created:
+  Create Savings Account TC 4 - Individual Money Market Created:
+    follow-redirects: true
+    requests:
+      - url: '${BASE_URL}/api/v1/auth?username=jsmith@demo.io&password=Demo123!'
+        method: POST
+        label: 1. Authenticate API User
+        headers:
+          Content-Type: application/json
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+        extract-jsonpath:
+          authToken: 'authToken'
+      - url: '${BASE_URL}/api/v1/user/account'
+        method: POST
+        label: 2. Create Savings Account
+        headers:
+          Authorization: Bearer ${authToken}
+          Content-Type: application/json
+        body: '{ "accountName": "AKP Savings", "accountTypeCode": "MMA", "openingDeposit": 3422, "ownerTypeCode": "IND" }'
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+
+  Create Savings Account TC 5 - Individual Savings Created:
     follow-redirects: true
     requests:
       - url: '${BASE_URL}/api/v1/auth?username=jsmith@demo.io&password=Demo123!'
@@ -121,7 +151,97 @@ scenarios:
            regexp: true
            assume-success: true
 
-  Create Savings Account TC 5 - Data Validation Error:
+  Create Savings Account TC 6 - Individual Savings Created:
+    follow-redirects: true
+    requests:
+      - url: '${BASE_URL}/api/v1/auth?username=jsmith@demo.io&password=Demo123!'
+        method: POST
+        label: 1. Authenticate API User
+        headers:
+          Content-Type: application/json
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+        extract-jsonpath:
+          authToken: 'authToken'
+      - url: '${BASE_URL}/api/v1/user/account'
+        method: POST
+        label: 2. Create Savings Account
+        headers:
+          Authorization: Bearer ${authToken}
+          Content-Type: application/json
+        body: '{ "accountName": "AKP Savings", "accountTypeCode": "SAV", "openingDeposit": 727, "ownerTypeCode": "IND" }'
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+
+  Create Savings Account TC 7 - Individual Savings Not Created - Minimum Deposit Not Met:
+    follow-redirects: true
+    requests:
+      - url: '${BASE_URL}/api/v1/auth?username=jsmith@demo.io&password=Demo123!'
+        method: POST
+        label: 1. Authenticate API User
+        headers:
+          Content-Type: application/json
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+        extract-jsonpath:
+          authToken: 'authToken'
+      - url: '${BASE_URL}/api/v1/user/account'
+        method: POST
+        label: 2. Create Savings Account
+        headers:
+          Authorization: Bearer ${authToken}
+          Content-Type: application/json
+        body: '{ "accountName": "AKP Savings", "accountTypeCode": "SAV", "openingDeposit": 24, "ownerTypeCode": "IND" }'
+        assert:
+         - contains:
+           - '406'
+           subject: http-code
+           regexp: true
+           assume-success: true
+
+  Create Savings Account TC 8 - Individual Savings Not Created - Initial Deposit Less Than Zero:
+    follow-redirects: true
+    requests:
+      - url: '${BASE_URL}/api/v1/auth?username=jsmith@demo.io&password=Demo123!'
+        method: POST
+        label: 1. Authenticate API User
+        headers:
+          Content-Type: application/json
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+        extract-jsonpath:
+          authToken: 'authToken'
+      - url: '${BASE_URL}/api/v1/user/account'
+        method: POST
+        label: 2. Create Savings Account
+        headers:
+          Authorization: Bearer ${authToken}
+          Content-Type: application/json
+        body: '{ "accountName": "AKP Savings", "accountTypeCode": "SAV", "openingDeposit": -87, "ownerTypeCode": "IND" }'
+        assert:
+         - contains:
+           - '400'
+           subject: http-code
+           regexp: true
+           assume-success: true
+
+  Create Savings Account TC 9 - Data Validation Error:
     follow-redirects: true
     requests:
       - url: '${BASE_URL}/api/v1/auth?username=jsmith@demo.io&password=Demo123!'
@@ -144,6 +264,366 @@ scenarios:
           Authorization: Bearer ${authToken}
           Content-Type: application/json
         body: '{ "accountName": "AKP Savings", "accountTypeCode": "", "openingDeposit": , "ownerTypeCode": "IND" }'
+        assert:
+         - contains:
+           - '400'
+           subject: http-code
+           regexp: true
+           assume-success: true
+
+  Create Savings Account TC 10 - Joint Money Market Not Created - Minimum Deposit Not Met:
+    follow-redirects: true
+    requests:
+      - url: '${BASE_URL}/api/v1/auth?username=jsmith@demo.io&password=Demo123!'
+        method: POST
+        label: 1. Authenticate API User
+        headers:
+          Content-Type: application/json
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+        extract-jsonpath:
+          authToken: 'authToken'
+      - url: '${BASE_URL}/api/v1/user/account'
+        method: POST
+        label: 2. Create Savings Account
+        headers:
+          Authorization: Bearer ${authToken}
+          Content-Type: application/json
+        body: '{ "accountName": "AKP Savings", "accountTypeCode": "MMA", "openingDeposit": 256, "ownerTypeCode": "JNT" }'
+        assert:
+         - contains:
+           - '406'
+           subject: http-code
+           regexp: true
+           assume-success: true
+
+  Create Savings Account TC 11 - Joint Money Market Not Created - Initial Deposit Less Than Zero:
+    follow-redirects: true
+    requests:
+      - url: '${BASE_URL}/api/v1/auth?username=jsmith@demo.io&password=Demo123!'
+        method: POST
+        label: 1. Authenticate API User
+        headers:
+          Content-Type: application/json
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+        extract-jsonpath:
+          authToken: 'authToken'
+      - url: '${BASE_URL}/api/v1/user/account'
+        method: POST
+        label: 2. Create Savings Account
+        headers:
+          Authorization: Bearer ${authToken}
+          Content-Type: application/json
+        body: '{ "accountName": "AKP Savings", "accountTypeCode": "MMA", "openingDeposit": -87, "ownerTypeCode": "JNT" }'
+        assert:
+         - contains:
+           - '400'
+           subject: http-code
+           regexp: true
+           assume-success: true
+
+  Create Savings Account TC 12 - Joint Money Market Created:
+    follow-redirects: true
+    requests:
+      - url: '${BASE_URL}/api/v1/auth?username=jsmith@demo.io&password=Demo123!'
+        method: POST
+        label: 1. Authenticate API User
+        headers:
+          Content-Type: application/json
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+        extract-jsonpath:
+          authToken: 'authToken'
+      - url: '${BASE_URL}/api/v1/user/account'
+        method: POST
+        label: 2. Create Savings Account
+        headers:
+          Authorization: Bearer ${authToken}
+          Content-Type: application/json
+        body: '{ "accountName": "AKP Savings", "accountTypeCode": "MMA", "openingDeposit": 2500, "ownerTypeCode": "JNT" }'
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+
+  Create Savings Account TC 13 - Joint Money Market Created:
+    follow-redirects: true
+    requests:
+      - url: '${BASE_URL}/api/v1/auth?username=jsmith@demo.io&password=Demo123!'
+        method: POST
+        label: 1. Authenticate API User
+        headers:
+          Content-Type: application/json
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+        extract-jsonpath:
+          authToken: 'authToken'
+      - url: '${BASE_URL}/api/v1/user/account'
+        method: POST
+        label: 2. Create Savings Account
+        headers:
+          Authorization: Bearer ${authToken}
+          Content-Type: application/json
+        body: '{ "accountName": "AKP Savings", "accountTypeCode": "MMA", "openingDeposit": 3650, "ownerTypeCode": "JNT" }'
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+
+  Create Savings Account TC 14 - Joint Savings Created:
+    follow-redirects: true
+    requests:
+      - url: '${BASE_URL}/api/v1/auth?username=jsmith@demo.io&password=Demo123!'
+        method: POST
+        label: 1. Authenticate API User
+        headers:
+          Content-Type: application/json
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+        extract-jsonpath:
+          authToken: 'authToken'
+      - url: '${BASE_URL}/api/v1/user/account'
+        method: POST
+        label: 2. Create Savings Account
+        headers:
+          Authorization: Bearer ${authToken}
+          Content-Type: application/json
+        body: '{ "accountName": "AKP Savings", "accountTypeCode": "SAV", "openingDeposit": 25, "ownerTypeCode": "JNT" }'
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+
+  Create Savings Account TC 15 - Joint Savings Created:
+    follow-redirects: true
+    requests:
+      - url: '${BASE_URL}/api/v1/auth?username=jsmith@demo.io&password=Demo123!'
+        method: POST
+        label: 1. Authenticate API User
+        headers:
+          Content-Type: application/json
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+        extract-jsonpath:
+          authToken: 'authToken'
+      - url: '${BASE_URL}/api/v1/user/account'
+        method: POST
+        label: 2. Create Savings Account
+        headers:
+          Authorization: Bearer ${authToken}
+          Content-Type: application/json
+        body: '{ "accountName": "AKP Savings", "accountTypeCode": "SAV", "openingDeposit": 971, "ownerTypeCode": "JNT" }'
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+
+  Create Savings Account TC 16 - Joint Savings Not Created - Minimum Deposit Not Met:
+    follow-redirects: true
+    requests:
+      - url: '${BASE_URL}/api/v1/auth?username=jsmith@demo.io&password=Demo123!'
+        method: POST
+        label: 1. Authenticate API User
+        headers:
+          Content-Type: application/json
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+        extract-jsonpath:
+          authToken: 'authToken'
+      - url: '${BASE_URL}/api/v1/user/account'
+        method: POST
+        label: 2. Create Savings Account
+        headers:
+          Authorization: Bearer ${authToken}
+          Content-Type: application/json
+        body: '{ "accountName": "AKP Savings", "accountTypeCode": "SAV", "openingDeposit": 20, "ownerTypeCode": "JNT" }'
+        assert:
+         - contains:
+           - '406'
+           subject: http-code
+           regexp: true
+           assume-success: true
+
+  Create Savings Account TC 17 - Joint Savings Not Created - Initial Deposit Less Than Zero:
+    follow-redirects: true
+    requests:
+      - url: '${BASE_URL}/api/v1/auth?username=jsmith@demo.io&password=Demo123!'
+        method: POST
+        label: 1. Authenticate API User
+        headers:
+          Content-Type: application/json
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+        extract-jsonpath:
+          authToken: 'authToken'
+      - url: '${BASE_URL}/api/v1/user/account'
+        method: POST
+        label: 2. Create Savings Account
+        headers:
+          Authorization: Bearer ${authToken}
+          Content-Type: application/json
+        body: '{ "accountName": "AKP Savings", "accountTypeCode": "SAV", "openingDeposit": -11, "ownerTypeCode": "JNT" }'
+        assert:
+         - contains:
+           - '400'
+           subject: http-code
+           regexp: true
+           assume-success: true
+
+  Create Savings Account TC 18 - Data Validation Error:
+    follow-redirects: true
+    requests:
+      - url: '${BASE_URL}/api/v1/auth?username=jsmith@demo.io&password=Demo123!'
+        method: POST
+        label: 1. Authenticate API User
+        headers:
+          Content-Type: application/json
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+        extract-jsonpath:
+          authToken: 'authToken'
+      - url: '${BASE_URL}/api/v1/user/account'
+        method: POST
+        label: 2. Create Savings Account
+        headers:
+          Authorization: Bearer ${authToken}
+          Content-Type: application/json
+        body: '{ "accountName": "AKP Savings", "accountTypeCode": "", "openingDeposit": , "ownerTypeCode": "JNT" }'
+        assert:
+         - contains:
+           - '400'
+           subject: http-code
+           regexp: true
+           assume-success: true
+
+  Create Savings Account TC 19 - Data Validation Error:
+    follow-redirects: true
+    requests:
+      - url: '${BASE_URL}/api/v1/auth?username=jsmith@demo.io&password=Demo123!'
+        method: POST
+        label: 1. Authenticate API User
+        headers:
+          Content-Type: application/json
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+        extract-jsonpath:
+          authToken: 'authToken'
+      - url: '${BASE_URL}/api/v1/user/account'
+        method: POST
+        label: 2. Create Savings Account
+        headers:
+          Authorization: Bearer ${authToken}
+          Content-Type: application/json
+        body: '{ "accountName": "AKP Savings", "accountTypeCode": "", "openingDeposit": , "ownerTypeCode": "" }'
+        assert:
+         - contains:
+           - '400'
+           subject: http-code
+           regexp: true
+           assume-success: true
+
+  Create Savings Account TC 20 - Data Validation Error:
+    follow-redirects: true
+    requests:
+      - url: '${BASE_URL}/api/v1/auth?username=jsmith@demo.io&password=Demo123!'
+        method: POST
+        label: 1. Authenticate API User
+        headers:
+          Content-Type: application/json
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+        extract-jsonpath:
+          authToken: 'authToken'
+      - url: '${BASE_URL}/api/v1/user/account'
+        method: POST
+        label: 2. Create Savings Account
+        headers:
+          Authorization: Bearer ${authToken}
+          Content-Type: application/json
+        body: '{ "accountName": "", "accountTypeCode": "", "openingDeposit": , "ownerTypeCode": "" }'
+        assert:
+         - contains:
+           - '400'
+           subject: http-code
+           regexp: true
+           assume-success: true
+
+  Create Savings Account TC 21 - Data Validation Error:
+    follow-redirects: true
+    requests:
+      - url: '${BASE_URL}/api/v1/auth?username=jsmith@demo.io&password=Demo123!'
+        method: POST
+        label: 1. Authenticate API User
+        headers:
+          Content-Type: application/json
+        assert:
+         - contains:
+           - '200'
+           subject: http-code
+           regexp: true
+           assume-success: true
+        extract-jsonpath:
+          authToken: 'authToken'
+      - url: '${BASE_URL}/api/v1/user/account'
+        method: POST
+        label: 2. Create Savings Account
+        headers:
+          Authorization: Bearer ${authToken}
+          Content-Type: application/json
+        body: '{ "accountName": "AKP Savings (*!$$(%$", "accountTypeCode": "", "openingDeposit": , "ownerTypeCode": "" }'
         assert:
          - contains:
            - '400'

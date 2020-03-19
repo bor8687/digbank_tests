@@ -1,7 +1,7 @@
 ---
 scenarios:
 
-  Create Savings Account TC 1 - Individual Money Market Not Created - Minimum Deposit Not Met:
+  Smoke Tests 1:
     follow-redirects: true
     requests:
       - url: '${BASE_URL}/api/v1/auth?username=jsmith@demo.io&password=Demo123!'
@@ -23,7 +23,7 @@ scenarios:
         headers:
           Authorization: Bearer ${authToken}
           Content-Type: application/json
-        body: '{ "accountName": "AKP Savings", "accountTypeCode": "MMA", "openingDeposit": 1760, "ownerTypeCode": "IND" }'
+        body: '{ "accountName": "AKP Savings", "accountTypeCode": "MMA", "openingDeposit": 1475, "ownerTypeCode": "IND" }'
         assert:
          - contains:
            - '406'
@@ -31,7 +31,7 @@ scenarios:
            regexp: true
            assume-success: true
 
-  Create Savings Account TC 2 - Individual Money Market Not Created - Initial Deposit Less Than Zero:
+  Smoke Tests 2:
     follow-redirects: true
     requests:
       - url: '${BASE_URL}/api/v1/auth?username=jsmith@demo.io&password=Demo123!'
@@ -53,7 +53,7 @@ scenarios:
         headers:
           Authorization: Bearer ${authToken}
           Content-Type: application/json
-        body: '{ "accountName": "AKP Savings", "accountTypeCode": "MMA", "openingDeposit": -6, "ownerTypeCode": "IND" }'
+        body: '{ "accountName": "AKP Savings", "accountTypeCode": "MMA", "openingDeposit": -85, "ownerTypeCode": "IND" }'
         assert:
          - contains:
            - '400'
@@ -61,7 +61,7 @@ scenarios:
            regexp: true
            assume-success: true
 
-  Create Savings Account TC 3 - Individual Money Market Created:
+  Smoke Tests 3:
     follow-redirects: true
     requests:
       - url: '${BASE_URL}/api/v1/auth?username=jsmith@demo.io&password=Demo123!'
@@ -91,7 +91,7 @@ scenarios:
            regexp: true
            assume-success: true
 
-  Create Savings Account TC 4 - Individual Savings Created:
+  Smoke Tests 4:
     follow-redirects: true
     requests:
       - url: '${BASE_URL}/api/v1/auth?username=jsmith@demo.io&password=Demo123!'
@@ -121,7 +121,7 @@ scenarios:
            regexp: true
            assume-success: true
 
-  Create Savings Account TC 5 - Data Validation Error:
+  Smoke Tests 5:
     follow-redirects: true
     requests:
       - url: '${BASE_URL}/api/v1/auth?username=jsmith@demo.io&password=Demo123!'

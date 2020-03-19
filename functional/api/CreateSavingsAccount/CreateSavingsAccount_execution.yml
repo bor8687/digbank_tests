@@ -11,27 +11,27 @@ modules:
     report-name: CreateSavingsAccount Test Report
     test: CreateSavingsAccount Test
 execution:
-  - scenario: Create Savings Account TC 1 - Individual Money Market Not Created - Minimum Deposit Not Met
+  - scenario: Smoke Tests 1
     concurrency: 2
     ramp-up: 1s
     hold-for: 2m
     iterations: -1
-  - scenario: Create Savings Account TC 2 - Individual Money Market Not Created - Initial Deposit Less Than Zero
+  - scenario: Smoke Tests 2
     concurrency: 2
     ramp-up: 1s
     hold-for: 2m
     iterations: -1
-  - scenario: Create Savings Account TC 3 - Individual Money Market Created
+  - scenario: Smoke Tests 3
     concurrency: 2
     ramp-up: 1s
     hold-for: 2m
     iterations: -1
-  - scenario: Create Savings Account TC 4 - Individual Savings Created
+  - scenario: Smoke Tests 4
     concurrency: 2
     ramp-up: 1s
     hold-for: 2m
     iterations: -1
-  - scenario: Create Savings Account TC 5 - Data Validation Error
+  - scenario: Smoke Tests 5
     concurrency: 2
     ramp-up: 1s
     hold-for: 2m
